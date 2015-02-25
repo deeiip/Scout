@@ -8,7 +8,7 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 public class ScoutController {
 	public void startCrawlFor(String target) throws Exception
 	{
-		String crawlStorageFolder = "c:/data/crawl/root";
+		String crawlStorageFolder = "c:/data/toicrawl/root";
         int numberOfCrawlers = 1;
 
         CrawlConfig config = new CrawlConfig();

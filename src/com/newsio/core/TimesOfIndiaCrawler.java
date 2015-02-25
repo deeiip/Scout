@@ -9,6 +9,7 @@ import org.jsoup.select.Elements;
 
 import com.newsio.types.NewsStorageFile;
 import com.newsio.types.NewsStorageItem;
+import com.newsio.utility.DataTransporter;
 
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
@@ -17,10 +18,6 @@ import edu.uci.ics.crawler4j.url.WebURL;
 
 public class TimesOfIndiaCrawler extends WebCrawler {
 
-	private NewsStorageFile file;
-	public TimesOfIndiaCrawler(){
-		file = new NewsStorageFile();
-	}
 	private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpe?g"
 			+ "|png|mp3|mp3|zip|gz))$");
 
@@ -75,14 +72,13 @@ public class TimesOfIndiaCrawler extends WebCrawler {
 			//System.out.println(news);
 		}
 		NewsStorageItem item = new NewsStorageItem();
-		item.setDetailsNews(headline);
+		item.setHeadLine(headline);
 		item.setDetailsNews(news);
 		item.setPath(path);
-		file.addnews(item);
-		if(file.getNewses().size()>10)
+		DataTransporter.addToContainer(item );
+		if(DataTransporter.container.size()>2)
 		{
-			file.persist();
-			file = new NewsStorageFile();
+			DataTransporter.persistContainer();
 		}
 	}
 	/**
