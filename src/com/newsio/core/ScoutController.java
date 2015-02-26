@@ -9,7 +9,7 @@ public class ScoutController {
 	public void startCrawlFor(String target) throws Exception
 	{
 		String crawlStorageFolder = "c:/data/toicrawl/root";
-        int numberOfCrawlers = 1;
+        int numberOfCrawlers = 100;
 
         CrawlConfig config = new CrawlConfig();
         config.setCrawlStorageFolder(crawlStorageFolder);
@@ -30,13 +30,13 @@ public class ScoutController {
          */
         //controller.addSeed("http://www.ics.uci.edu/~lopes/");
         //controller.addSeed("http://www.ics.uci.edu/~welling/");
-        controller.addSeed("http://timesofindia.indiatimes.com/");
+        controller.addSeed(target);
         
         /*
          * Start the crawl. This is a blocking operation, meaning that your code
          * will reach the line after this only when crawling is finished.
          */
-        controller.start(TimesOfIndiaCrawler.class, numberOfCrawlers);
+        controller.start(NYTimesCrawler.class, numberOfCrawlers);
 	}
 
 }
