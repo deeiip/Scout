@@ -9,7 +9,7 @@ public class ScoutController {
 	public void startCrawlFor(String target) throws Exception
 	{
 		String crawlStorageFolder = "c:/data/toicrawl/root";
-        int numberOfCrawlers = 100;
+        int numberOfCrawlers = 1;
 
         CrawlConfig config = new CrawlConfig();
         config.setCrawlStorageFolder(crawlStorageFolder);
@@ -36,7 +36,7 @@ public class ScoutController {
          * Start the crawl. This is a blocking operation, meaning that your code
          * will reach the line after this only when crawling is finished.
          */
-        controller.start(NYTimesCrawler.class, numberOfCrawlers);
+        controller.start(BBCCrawler.class, numberOfCrawlers);
 	}
 
 }

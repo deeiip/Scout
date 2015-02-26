@@ -27,17 +27,18 @@ public class DataPersister {
 			String containerName = null;
 			if(isTest)
 			{
-				containerName = "test_container";
+				containerName = "testcontainer";
 			}
 			else
 			{
-				containerName = "news_bucket";
+				containerName = "newsbucket";
 			}
 			// Get a reference to a container.
 			// The container name must be lower case
 			CloudBlobContainer container = blobClient.
 					getContainerReference(containerName);
 			container.createIfNotExists();
+			blobName+=".json";
 			CloudBlockBlob blob = container.getBlockBlobReference(blobName);
 			blob.uploadText(what);
 		} catch (InvalidKeyException e) {
