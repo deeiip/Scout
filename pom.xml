@@ -9,7 +9,9 @@
 
   <name>Scout</name>
   <url>http://newsio.com</url>
-
+  <properties>
+    <src.dir>src</src.dir>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -35,26 +37,6 @@
 
   </dependencies>
   <build>
-    <plugins>
-      <plugin>
-        <groupId>com.newsio</groupId>
-        <artifactId>scout</artifactId>
-        <executions>
-          <execution>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>
-                add-source
-              </goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>src/com/newsio/**/*.java</source>
-              </sources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
+    <sourceDirectory>${src.dir}</sourceDirectory>
   </build>
 </project>
