@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.newsio.types.NewsStorageFile;
 import com.newsio.types.NewsStorageItem;
 
+
 public class DataTransporter {
 	//public static NewsStorageFile container;
 	public static ArrayList<NewsStorageItem> container
