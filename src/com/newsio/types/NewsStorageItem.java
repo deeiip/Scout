@@ -6,6 +6,7 @@ public class NewsStorageItem {
 	private String headLine;
 	private String detailsNews;
 	private String path;
+	private String source;
 	public String getHeadLine() {
 		return headLine;
 	}
@@ -49,5 +50,11 @@ public class NewsStorageItem {
 		{
 			return false;
 		}
+	}
+	public String getSource() {
+		return source;
+	}
+	public void setSource(String source) {
+		this.source = source;
 	}
 }

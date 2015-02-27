@@ -75,10 +75,11 @@ public class TimesOfIndiaCrawler extends WebCrawler {
 		item.setHeadLine(headline);
 		item.setDetailsNews(news);
 		item.setPath(path);
-		DataTransporter.addToContainer(item );
-		if(DataTransporter.container.size()>2)
-		{
-			DataTransporter.persistContainer();
+		item.setSource("timesOfIndia");
+		synchronized (ScoutController.printerLock) {
+			//System.out.println(headline+"\t"+news+"\t"+path+"\tTimesOfIndia");
+			System.out.println(item.toString());
+			System.out.println(",");
 		}
 	}
 	/**

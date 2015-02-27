@@ -24,6 +24,6 @@ public class DataTransporter {
 		System.out.println(ret);
 		UUID uid = UUID.randomUUID();
 		String blobName = uid.toString();
-		DataPersister.persist(ret, blobName, true );
+		DataPersister.persist(ret, blobName );
 	}
 }

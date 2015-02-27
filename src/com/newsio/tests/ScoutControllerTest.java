@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.newsio.core.ScoutController;
+import com.newsio.types.NewsSource;
 
 public class ScoutControllerTest {
 
@@ -22,7 +23,7 @@ public class ScoutControllerTest {
 	public void startCCrawlForTest() {
 		ScoutController sc = new ScoutController();
 		try {
-			sc.startCrawlFor("http://www.bbc.com/news/");
+			sc.startCrawlFor(NewsSource.TimesOfIndia);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
