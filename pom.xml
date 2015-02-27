@@ -32,6 +32,29 @@
       <artifactId>gson</artifactId>
       <version>2.2.4</version>
     </dependency>
-    
+
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.newsio</groupId>
+        <artifactId>scout</artifactId>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>
+                add-source
+              </goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/com/newsio/**/*.java</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
