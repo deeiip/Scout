@@ -24,7 +24,7 @@ public class ScoutController {
 	}
 	public void startCrawlFor(NewsSource src) throws Exception
 	{
-		String crawlStorageFolder = "c:/data2/bbccrawl/root";
+		String crawlStorageFolder = "c:/data3/bbccrawl/root";
 		
         int numberOfCrawlers = 100;
 
@@ -67,6 +67,11 @@ public class ScoutController {
              */
             controller.start(TimesOfIndiaCrawler.class, numberOfCrawlers);
             //out.close();
+        }
+        else if(src == NewsSource.AlJeezera)
+        {
+        	controller.addSeed("http://www.aljazeera.com/");
+        	controller.start(AlJazeeraCrawler.class, numberOfCrawlers);
         }
         
 	}

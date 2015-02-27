@@ -2,5 +2,6 @@ package com.newsio.types;
 
 public enum NewsSource {
 	TimesOfIndia,
-	BBC
+	BBC,
+	AlJeezera
 }
