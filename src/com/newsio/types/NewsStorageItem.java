@@ -7,6 +7,8 @@ public class NewsStorageItem {
 	private String detailsNews;
 	private String path;
 	private String source;
+	private String url;
+	private String dateStr;
 	public String getHeadLine() {
 		return headLine;
 	}
@@ -56,5 +58,17 @@ public class NewsStorageItem {
 	}
 	public void setSource(String source) {
 		this.source = source;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getDateStr() {
+		return dateStr;
+	}
+	public void setDateStr(String dateStr) {
+		this.dateStr = dateStr;
 	}
 }

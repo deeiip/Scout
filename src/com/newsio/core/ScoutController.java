@@ -14,17 +14,9 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 public class ScoutController {
 	public static PrintWriter out;
 	public static Object printerLock = new Object();
-	public void open()
-	{
-		System.out.println("[");
-	}
-	public void close()
-	{
-		System.out.println("\b]");
-	}
 	public void startCrawlFor(NewsSource src) throws Exception
 	{
-		String crawlStorageFolder = "c:/data3/bbccrawl/root";
+		String crawlStorageFolder = "c:/data/crawl/root";
 		
         int numberOfCrawlers = 100;
 

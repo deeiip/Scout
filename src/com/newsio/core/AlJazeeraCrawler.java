@@ -39,6 +39,7 @@ public class AlJazeeraCrawler extends WebCrawler {
 		String headline = null;
 		String news = null;
 		String path = page.getWebURL().getPath().toLowerCase() ;
+		String url = page.getWebURL().toString().toLowerCase();
 		HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
 		String htm = htmlParseData.getHtml();
 		Document doc = Jsoup.parse(htm);
@@ -55,16 +56,19 @@ public class AlJazeeraCrawler extends WebCrawler {
 		}
 		String id = "heading-story";
 		Element elem = doc.getElementsByClass(id ).first();
+		Element dateElem = doc.getElementsByAttribute("datetime").first();
+		String date = dateElem.text();
 		headline = elem.text();
 		NewsStorageItem item = new NewsStorageItem();
 		item.setHeadLine(headline);
 		item.setDetailsNews(news);
 		item.setPath(path);
 		item.setSource("alJeezera");
+		item.setUrl(url);
+		item.setDateStr(date);
 		synchronized (ScoutController.printerLock) {
 			//System.out.println(headline+"\t"+news+"\t"+path+"\tbbc");
 			System.out.println(item.toString());
-			System.out.println(",");
 		}
 	}
 	/**

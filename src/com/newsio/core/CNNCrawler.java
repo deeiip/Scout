@@ -38,7 +38,9 @@ public class CNNCrawler extends WebCrawler {
 	{
 		String headline = null;
 		String news = null;
+		String dateText = null;
 		String path = page.getWebURL().getPath().toLowerCase() ;
+		String url = null;
 		HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
 		String htm = htmlParseData.getHtml();
 		Document doc = Jsoup.parse(htm);
@@ -56,7 +58,12 @@ public class CNNCrawler extends WebCrawler {
 		String id = "pg-headline";
 		Element elem = doc.getElementsByClass(id).first();
 		headline = elem.text();
+		Element dateElem = doc.getElementsByClass("update-time").first();
+		dateText = dateElem.text();
+		url = page.getWebURL().toString().toLowerCase();
 		NewsStorageItem item = new NewsStorageItem();
+		item.setDateStr(dateText);
+		item.setUrl(url);
 		item.setHeadLine(headline);
 		item.setDetailsNews(news);
 		item.setPath(path);
@@ -64,7 +71,6 @@ public class CNNCrawler extends WebCrawler {
 		synchronized (ScoutController.printerLock) {
 			//System.out.println(headline+"\t"+news+"\t"+path+"\tbbc");
 			System.out.println(item.toString());
-			System.out.println(",");
 		}
 	}
 	/**

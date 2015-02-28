@@ -41,8 +41,10 @@ public class TimesOfIndiaCrawler extends WebCrawler {
 	private void ParseNews(Page page)
 	{
 		String headline = null;
-		String news;
+		String news = null;
 		String path = page.getWebURL().getPath().toLowerCase() ;
+		String dateStr = null;
+		String url = null;
 		HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
 		String htm = htmlParseData.getHtml();
 		Document doc = Jsoup.parse(htm);
@@ -70,10 +72,15 @@ public class TimesOfIndiaCrawler extends WebCrawler {
 			news = newsText.text();
 			//System.out.println(news);
 		}
+		url = page.getWebURL().toString().toLowerCase();
+		Element dateElem = doc.getElementById("byline");
+		dateStr = dateElem.text();
 		NewsStorageItem item = new NewsStorageItem();
 		item.setHeadLine(headline);
 		item.setDetailsNews(news);
 		item.setPath(path);
+		item.setDateStr(dateStr);
+		item.setUrl(url);
 		item.setSource("timesOfIndia");
 		synchronized (ScoutController.printerLock) {
 			//System.out.println(headline+"\t"+news+"\t"+path+"\tTimesOfIndia");
@@ -104,30 +111,5 @@ public class TimesOfIndiaCrawler extends WebCrawler {
 			//System.out.println(page.getWebURL().toString());
 			//System.out.println("This page is cat page");
 		}
-		//		String url = page.getWebURL().getURL();
-		//         System.out.println("URL: " + url);
-		//         if (page.getParseData() instanceof HtmlParseData) {
-		//        	 System.out.println(page);
-		//        	 System.out.println("this is called");
-		//             HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
-		//             //System.out.println(htmlParseData);
-		//             String text = htmlParseData.getText();
-		//             String html = htmlParseData.getHtml();
-		//             Document doc = Jsoup.parse(html);
-		//             Elements linkss = doc.select("a");
-		//             Element head = doc.select("head").first();
-		//             
-		//             Set<WebURL> links = htmlParseData.getOutgoingUrls();
-		//             PrintWriter writer;
-		//             try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("c:/data/myfile.txt", true)))) {
-		//            	    out.println(head);
-		//            	}catch (IOException e) {
-		//            	    //exception handling left as an exercise for the reader
-		//            	}
-		//             
-		//             //System.out.println("Text length: " + text.length());
-		//             //System.out.println("Html length: " + html.length());
-		//             System.out.println("Number of outgoing links: " + links.size());
-		//         }
 	}
 }
