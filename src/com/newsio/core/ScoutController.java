@@ -73,6 +73,11 @@ public class ScoutController {
         	controller.addSeed("http://www.aljazeera.com/");
         	controller.start(AlJazeeraCrawler.class, numberOfCrawlers);
         }
+        else if(src == NewsSource.CNN)
+        {
+        	controller.addSeed("http://edition.cnn.com/");
+        	controller.start(CNNCrawler.class, numberOfCrawlers);
+        }
         
 	}
 

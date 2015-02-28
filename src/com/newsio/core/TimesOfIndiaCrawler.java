@@ -35,8 +35,7 @@ public class TimesOfIndiaCrawler extends WebCrawler {
 	public boolean shouldVisit(Page referringPage, WebURL url) {
 		String href = url.getURL().toLowerCase();
 		return !FILTERS.matcher(href).matches()
-				&& href.startsWith(referringPage.getWebURL().toString().
-						toLowerCase());
+				&& href.contains("indiatimes.com");
 	}
 
 	private void ParseNews(Page page)

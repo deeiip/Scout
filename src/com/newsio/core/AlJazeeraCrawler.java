@@ -31,8 +31,7 @@ public class AlJazeeraCrawler extends WebCrawler {
 	public boolean shouldVisit(Page referringPage, WebURL url) {
 		String href = url.getURL().toLowerCase();
 		return !FILTERS.matcher(href).matches()
-				&& href.startsWith(referringPage.getWebURL().toString().
-						toLowerCase());
+				&& href.contains("aljazeera.com");
 	}
 
 	private void ParseNews(Page page)

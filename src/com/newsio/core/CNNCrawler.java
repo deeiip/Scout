@@ -1,22 +1,19 @@
 package com.newsio.core;
 
-import java.util.Iterator;
 import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import com.newsio.types.NewsStorageItem;
-import com.newsio.utility.DataTransporter;
 
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
 
-public class BBCCrawler extends WebCrawler {
+public class CNNCrawler extends WebCrawler {
 	private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpe?g"
 			+ "|png|mp3|mp3|zip|gz))$");
 
@@ -34,7 +31,7 @@ public class BBCCrawler extends WebCrawler {
 	public boolean shouldVisit(Page referringPage, WebURL url) {
 		String href = url.getURL().toLowerCase();
 		return !FILTERS.matcher(href).matches()
-				&& href.contains("bbc.com");
+				&& href.contains("cnn.com");
 	}
 
 	private void ParseNews(Page page)
@@ -45,8 +42,8 @@ public class BBCCrawler extends WebCrawler {
 		HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
 		String htm = htmlParseData.getHtml();
 		Document doc = Jsoup.parse(htm);
-		String className = "story-body";
-		Element elemBody = doc.getElementsByClass(className).first();
+		String className = "body-text";
+		Element elemBody = doc.getElementById(className);
 		if (elemBody!=null) {
 			//System.out.println("yes! thats a news!");
 			news = elemBody.text();
@@ -56,14 +53,14 @@ public class BBCCrawler extends WebCrawler {
 			//System.out.println("It isn't a news page");
 			return;
 		}
-		String id = "story-header";
-		Element elem = doc.getElementsByClass(id ).first();
+		String id = "pg-headline";
+		Element elem = doc.getElementsByClass(id).first();
 		headline = elem.text();
 		NewsStorageItem item = new NewsStorageItem();
 		item.setHeadLine(headline);
 		item.setDetailsNews(news);
 		item.setPath(path);
-		item.setSource("bbc");
+		item.setSource("cnn");
 		synchronized (ScoutController.printerLock) {
 			//System.out.println(headline+"\t"+news+"\t"+path+"\tbbc");
 			System.out.println(item.toString());
@@ -76,6 +73,7 @@ public class BBCCrawler extends WebCrawler {
 	 */
 	@Override
 	public void visit(Page page) {
+		//System.out.println("Visiting page "+ page.getWebURL().toString());
 		this.ParseNews(page);
 		//System.out.println("Visiting page "+ page.getWebURL().toString());
 	}

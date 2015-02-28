@@ -23,7 +23,7 @@ public class ScoutControllerTest {
 	public void startCCrawlForTest() {
 		ScoutController sc = new ScoutController();
 		try {
-			sc.startCrawlFor(NewsSource.AlJeezera);
+			sc.startCrawlFor(NewsSource.CNN);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
