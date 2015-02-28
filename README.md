@@ -1,4 +1,4 @@
-# Dillinger
+# Scout
 
 Crawler to crawl media websites
 
